@@ -33,11 +33,11 @@ def modify_datas(idx, col, value):
 def kembalikan():
     num = 1
     for i in user_datas:
-        print("{}. {}".format(num, i[2]))
+        print("{}. {}".format(num, cek_nama(i[2])[0]))
         num += 1
     _id = int(input("Masukkan nomor peminjaman: "))
     tanggal_peminjaman = input("Tanggal pengembalian: ")
-    id_gadget = datas[_id-1][2]
+    id_gadget = user_datas[_id-1][2]
     data_nama = cek_nama(id_gadget)
     if data_nama[0] != "Not Found":
         tambah_history_pengembalian(_id, tanggal_peminjaman)
