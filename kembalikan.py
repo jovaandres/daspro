@@ -1,9 +1,13 @@
 from load import load
+from tambah_history_pengembalian import tambah_history_pengembalian, save
 
 filedata = load("gadget_borrow_history.csv", "r")
 header = filedata["header"]
 datas = filedata["datas"]
 user_datas = []
+
+file_peminjaman = load("gadget.csv", "r")
+data_peminjaman = file_peminjaman["datas"]
 
 def filter_by_user(_id, array_data):
     for data in datas:
@@ -31,33 +35,34 @@ def kembalikan():
     for i in user_datas:
         print("{}. {}".format(num, i[2]))
         num += 1
-    _id = input("Masukkan nomor peminjaman: ")
+    _id = int(input("Masukkan nomor peminjaman: "))
     tanggal_peminjaman = input("Tanggal pengembalian: ")
-    nama = cek_nama(_id)
+    id_gadget = datas[_id-1][2]
+    data_nama = cek_nama(id_gadget)
+    if data_nama[0] != "Not Found":
+        tambah_history_pengembalian(_id, tanggal_peminjaman)
+        save()
+        print("Item {} (x{}) berhasil dikembalikan!".format(data_nama[0], datas[_id-1][4]))
+                             
 
 def cek_stok(_id, jumlah):
     found = False
     i = 0
-    while not found and i <= len(datas):
-        if datas[i][0] == _id:
+    while not found and i <= len(user_datas):
+        if user_datas[i][0] == _id:
             found = True
-            if datas[i][3] >= jumlah:
+            if user_datas[i][3] >= jumlah:
                 return True
         i += 1
     return False
 
 def cek_nama(_id):
-    found = False
     i = 0
-    while not found and i <= len(datas):
-        if datas[i][0] == _id:
-            found = True
-            return datas[i][1]
+    while i < len(data_peminjaman):
+        if data_peminjaman[i][0] == _id:
+            return (data_peminjaman[i][1], i)
         i += 1
-    return "Not Found"
-
-def save_to_history(_id, tanggal, jumlah):
-    return print("Saved")
+    return ("Not Found")
 
 filter_by_user("1", datas)
 kembalikan()

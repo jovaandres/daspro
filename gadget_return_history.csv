@@ -1,1 +1,19 @@
-id,id_peminjam,id_gadget,tanggal_pengembalian
+id,id_peminjaman,tanggal_pengembalian
+1,C:/Users/ASUS/AppData/Local/Programs/Python/Python39/python.exe c:/Users/ASUS/PycharmProjects/pengkomProject/tubes-daspro/kembalikan.py,C:/Users/ASUS/AppData/Local/Programs/Python/Python39/python.exe c:/Users/ASUS/PycharmProjects/pengkomProject/tubes-daspro/kembalikan.py
+2,1,30
+3,1,34
+4,1,23
+5,1,32
+6,1,32
+7,1,32
+8,1,32
+9,1,23
+10,C:/Users/ASUS/AppData/Local/Programs/Python/Python39/python.exe c:/Users/ASUS/PycharmProjects/pengkomProject/tubes-daspro/kembalikan.py,C:/Users/ASUS/AppData/Local/Programs/Python/Python39/python.exe c:/Users/ASUS/PycharmProjects/pengkomProject/tubes-daspro/kembalikan.py
+11,1,23
+12,1,23
+13,1,23
+14,1,23
+15,1,23
+16,1,23
+17,1,23
+18,1,23

@@ -1,12 +1,12 @@
 from load import load
 
-filedata = load("gadget_borrow_history.csv", "r")
+filedata = load("gadget_return_history.csv", "r")
 header = filedata["header"]
 datas = filedata["datas"]
 
 # TAMBAH HISTORY PEMINJAMAN
-def tambah_history_peminjaman(id_peminjam,id_gadget,tanggal_peminjaman,jumlah):
-    datas.append([len(datas) + 1,id_peminjam,id_gadget,tanggal_peminjaman,int(jumlah)])
+def tambah_history_pengembalian(id_peminjaman,tanggal_peminjaman):
+    datas.append([len(datas) + 1,id_peminjaman,tanggal_peminjaman])
 
 def convert_datas_to_string():
     string_data = ",".join(header) + "\n"
@@ -18,6 +18,6 @@ def convert_datas_to_string():
 
 def save():
     data_as_string = convert_datas_to_string()
-    f = open("gadget_borrow_history.csv", "w")
+    f = open("gadget_return_history.csv", "w")
     f.write(data_as_string)
     f.close

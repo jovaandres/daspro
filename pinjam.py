@@ -6,17 +6,26 @@ header = filedata["header"]
 datas = filedata["datas"]
 
 # PINJAM GADGET
-def pinjam_gadget():
+def pinjam_gadget(id_peminjam):
     _id = input("Masukkan ID item: ")
     tanggal_peminjaman = input("Tanggal peminjaman: ")
     jumlah_peminjaman = int(input("Jumlah peminjaman: "))
-    nama = cek_nama(_id)
-    if cek_stok(_id, jumlah_peminjaman):
-        tambah_history_peminjaman(3, 1, _id, tanggal_peminjaman, jumlah_peminjaman)
-        save()
-        print("Item {} (x{}) berhasil dipinjam!".format(nama, jumlah_peminjaman))
+    data_nama = cek_nama(_id)
+    nama = data_nama[0]
+    if nama != "Not Found":
+        if cek_stok(_id, jumlah_peminjaman):
+            ubah_stok(data_nama[1], jumlah_peminjaman)
+            tambah_history_peminjaman(id_peminjam, _id, tanggal_peminjaman, jumlah_peminjaman)
+            save()
+            print("Item {} (x{}) berhasil dipinjam!".format(nama, jumlah_peminjaman))
+        else:
+            print("Jumlah item yang tersedia tidak mencukupi permintaan")
     else:
-        print("Jumlah item yang tersedia tidak mencukupi permintaan")
+        print("Item dengan ID {} tidak ditemukan!".format(_id))
+
+def ubah_stok(index, jumlah):
+    datas[index][3] = datas[index][3] - jumlah
+    
 
 def cek_stok(_id, jumlah):
     found = False
@@ -30,14 +39,12 @@ def cek_stok(_id, jumlah):
     return False
 
 def cek_nama(_id):
-    found = False
     i = 0
-    while not found and i <= len(datas):
+    while i < len(datas):
         if datas[i][0] == _id:
-            found = True
-            return datas[i][1]
+            return (datas[i][1], i)
         i += 1
-    return "Not Found"
+    return ("Not Found")
 
 def convert_datas_to_string():
     string_data = ",".join(header) + "\n"
@@ -47,7 +54,7 @@ def convert_datas_to_string():
         string_data += "\n"
     return string_data
 
-pinjam_gadget()
+pinjam_gadget(1)
 data_as_string = convert_datas_to_string()
 f = open("gadget.csv", "w")
 f.write(data_as_string)
