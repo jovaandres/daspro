@@ -3,29 +3,7 @@
 #tanggal: 18 April 2021
 
 import time as datetime
-
-#FUNGSI/PROSEDURAL
-def convert_array_data_to_real_values(array_data):
-    arr_cpy = array_data[:]
-    for i in range(5):
-        if(i == 0 or i == 4):
-            arr_cpy[i] = int(arr_cpy[i])
-    return arr_cpy
-
-def convert_line_to_data(line):
-    raw_data = []
-    tmp = ''
-    for i in line:
-        if i == ';':
-            raw_data.append(tmp)
-            tmp = ''
-        else: 
-            tmp += i
-    if tmp :
-        raw_data.append(tmp)
-    
-    array_of_data = [data.strip() for data in raw_data]
-    return array_of_data
+from load import load
 
 def convert_datas_to_string():
   string_data = ";".join(header) + "\n"
@@ -75,29 +53,14 @@ def tampil_lagi(sorted_datas,idx):
 #ALGORITMA UTAMA
 
 #Pengaksesan file riwayat pengambilan consumable  dan konversi
-f = open("consumable_history.csv","r")
-raw_lines = f.readlines()
-f.close()
-lines = [raw_line.replace('\n','') for raw_line in raw_lines]
-raw_header = lines.pop(0)
-header = convert_line_to_data(raw_header)
-datas=[]
-for line in lines:
-  array_of_data = convert_line_to_data(line)
-  real_values = convert_array_data_to_real_values(array_of_data)
-  datas.append(real_values)
+consume_history = load("consumable_history.csv","r")
+header = consume_history["header"]
+datas = consume_history["datas"]
 
 #Pengaksesan file consumable dan konversi
-g = open("consumable.csv","r")
-raw_lines_consumable = g.readlines()
-g.close()
-lines_consumable = [raw_line.replace('\n','') for raw_line in raw_lines_consumable]
-raw_header_consumable = lines_consumable.pop(0)
-header_consumable = convert_line_to_data(raw_header_consumable)
-datas_consumable=[]
-for line in lines_consumable:
-  array_of_data_consumable = convert_line_to_data(line)
-  datas_consumable.append(array_of_data_consumable)
+consumable = load("consumable.csv","r")
+header_consumable = consumable["header"]
+datas_consumable = consumable["datas"]
 
 
 #Mengurutkan tanggal dan id berdasarkan tanggal

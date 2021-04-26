@@ -13,7 +13,7 @@ def convert_datas_to_string():
         string_data += "\n"
     return string_data
 
-def save(username):
+def save_register(username):
     datas_as_string = convert_datas_to_string()
     f = open("user.csv","w")
     f.write(datas_as_string)
@@ -44,5 +44,5 @@ def register():
             role = "user"
             user_baru = [len(datas) + 1,nama,username,alamat,password,role]
             datas.append(user_baru)
-            save(username)
+            save_register(username)
             

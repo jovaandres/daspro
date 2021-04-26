@@ -5,7 +5,7 @@ end = '\033[0m'
 id_pengambil = 1
 
 def open_csv(file):
-    f = open(file,'r',encoding='utf-8-sig')
+    f = open(file, 'r', encoding='utf-8-sig')
     raw_lines = f.readlines()
     f.close()
     lines = [raw_line.replace("\n","") for raw_line in raw_lines]
@@ -16,7 +16,7 @@ def open_csv(file):
     data = []
     for line in lines :
         array_of_data = convert_line_to_data(line)
-        real_values = convert_array_data_to_real_values(array_of_data,file)
+        real_values = convert_array_data_to_real_values(array_of_data, file)
         data.append(real_values)
     
     data_header = [data,header]
@@ -24,7 +24,7 @@ def open_csv(file):
 
 def save_csv(file, data, header):
     datas_as_string = convert_datas_to_string(data,header)
-    g = open(file,"w")
+    g = open(file, "w")
     g.write(datas_as_string)
     g.close()
 

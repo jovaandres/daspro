@@ -46,4 +46,12 @@ def convert_array_data_to_real_values(array_data, filename):
         for i in range(6):
             if (i == 0):
                 arr_copy[i] = int(arr_copy[i])
+    elif filename == "consumable.py":
+        for i in range (5):
+            if(i == 3):
+                arr_copy[i] = int(arr_copy[i])
+    elif filename == "consumable_history.csv":
+        for i in range(5):
+            if(i == 0 or i == 4):
+                arr_copy[i] = int(arr_copy[i])
     return arr_copy
