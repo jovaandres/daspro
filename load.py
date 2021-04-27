@@ -1,3 +1,30 @@
+import os
+database_dir = ''
+
+def loadData(args):
+    global database_dir
+    x = os.getcwd()
+    x += f'\\{args.data}'
+    database_dir = split_by_chr(str(x), "\\")[-1]
+
+def loadGadget():
+    return load(f"{database_dir}\\gadget.csv", "r")
+
+def loadConsumable():
+    return load(f"{database_dir}\\consumable.csv", "r")
+
+def loadUser():
+    return load(f"{database_dir}\\user.csv", "r")
+
+def loadGagdetBorrowHistory():
+    return load(f"{database_dir}\\gadget_borrow_history.csv", "r")
+
+def loadGagdetReturnHistory():
+    return load(f"{database_dir}\\gadget_return_history.csv", "r")
+
+def loadConsumableHistory():
+    return load(f"{database_dir}\\consumable_history.csv", "r")
+
 def load(filename, mode):
     f = open(filename, mode)
     raw_lines = f.readlines()
@@ -28,7 +55,7 @@ def split_by_chr(string_data, pattern):
     return arr_splitted
 
 def convert_line_to_data(line):
-    raw_array_of_data = split_by_chr(line, ",")
+    raw_array_of_data = split_by_chr(line, ";")
     array_of_data = [data.strip() for data in raw_array_of_data]
     return array_of_data
 
@@ -46,7 +73,7 @@ def convert_array_data_to_real_values(array_data, filename):
         for i in range(6):
             if (i == 0):
                 arr_copy[i] = int(arr_copy[i])
-    elif filename == "consumable.py":
+    elif filename == "consumable.csv":
         for i in range (5):
             if(i == 3):
                 arr_copy[i] = int(arr_copy[i])

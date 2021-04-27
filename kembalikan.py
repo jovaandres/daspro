@@ -1,26 +1,21 @@
-from load import load
+from load import loadGagdetBorrowHistory, loadGagdetReturnHistory, loadGadget
 from tambah_history_pengembalian import tambah_history_pengembalian, save
 
-filedata = load("gadget_borrow_history.csv", "r")
+filedata =  loadGagdetBorrowHistory()
 header = filedata["header"]
 datas = filedata["datas"]
 user_datas = []
 
-file_peminjaman = load("gadget.csv", "r")
+file_peminjaman = loadGagdetReturnHistory()
 data_peminjaman = file_peminjaman["datas"]
+
+file_gadget = loadGadget()
+data_gadget = file_gadget["datas"]
 
 def filter_by_user(_id, array_data):
     for data in datas:
         if data[1] == _id:
             user_datas.append(data)
-
-def convert_datas_to_string():
-    string_data = ",".join(header) + "\n"
-    for arr_data in datas:
-        arr_data_all_string = [str(var) for var in arr_data]
-        string_data += ",".join(arr_data_all_string)
-        string_data += "\n"
-    return string_data
 
 def modify_datas(idx, col, value):
     if col == 4:
@@ -58,16 +53,10 @@ def cek_stok(_id, jumlah):
 
 def cek_nama(_id):
     i = 0
-    while i < len(data_peminjaman):
-        if data_peminjaman[i][0] == _id:
-            return (data_peminjaman[i][1], i)
+    while i < len(data_gadget):
+        if data_gadget[i][0] == _id:
+            return (data_gadget[i][1], i)
         i += 1
     return ("Not Found")
 
 filter_by_user("1", datas)
-kembalikan()
-
-data_as_string = convert_datas_to_string()
-f = open("gadget_borrow_history.csv", "w")
-f.write(data_as_string)
-f.close

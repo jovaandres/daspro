@@ -1,9 +1,9 @@
 # PROGRAM  
 # procedure mengubah data csv menjadi array
 
-from load import load
+from load import loadUser
 
-user_datas = load("user.csv", "r")
+user_datas = loadUser()
 header = user_datas["header"]
 datas = user_datas["datas"]
 

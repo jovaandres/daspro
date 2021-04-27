@@ -3,7 +3,7 @@
 #tanggal pembuatan: 17 April 2021
 
 import time as datetime
-from load import load
+from load import loadGagdetBorrowHistory
 
 #FUNGSI/PROSEDURAL
 def convert_datas_to_string():
@@ -54,7 +54,7 @@ def tampil_lagi(sorted_datas,idx):
 #ALGORITMA UTAMA
 
 #Pengaksesan file dan konversi
-filedata = load("gadget_borrow_history.csv","r")
+filedata = loadGagdetBorrowHistory()
 header = filedata["header"]
 datas = filedata["datas"]
 

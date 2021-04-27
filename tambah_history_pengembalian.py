@@ -1,6 +1,6 @@
-from load import load
+from load import loadGagdetReturnHistory
 
-filedata = load("gadget_return_history.csv", "r")
+filedata = loadGagdetReturnHistory()
 header = filedata["header"]
 datas = filedata["datas"]
 
@@ -9,10 +9,10 @@ def tambah_history_pengembalian(id_peminjaman,tanggal_peminjaman):
     datas.append([len(datas) + 1,id_peminjaman,tanggal_peminjaman])
 
 def convert_datas_to_string():
-    string_data = ",".join(header) + "\n"
+    string_data = ";".join(header) + "\n"
     for arr_data in datas:
         arr_data_all_string = [str(var) for var in arr_data]
-        string_data += ",".join(arr_data_all_string)
+        string_data += ";".join(arr_data_all_string)
         string_data += "\n"
     return string_data
 

@@ -3,23 +3,7 @@
 bold = '\033[1m'
 end = '\033[0m'
 
-def open_csv(file):
-    f = open(file,'r',encoding='utf-8-sig')
-    raw_lines = f.readlines()
-    f.close()
-    lines = [raw_line.replace("\n","") for raw_line in raw_lines]
-    raw_header = lines.pop(0)
-    header = convert_line_to_data(raw_header)
-    
-    #assign  to arry
-    data = []
-    for line in lines :
-        array_of_data = convert_line_to_data(line)
-        real_values = convert_array_data_to_real_values(array_of_data,file)
-        data.append(real_values)
-    
-    data_header = [data,header]
-    return data_header
+from load import loadGadget, loadConsumable
 
 def save_csv(file, data, header):
     datas_as_string = convert_datas_to_string(data,header)
@@ -67,7 +51,6 @@ def convert_datas_to_string(data,header):
   return string_data
 
 
-
 #ALGORITMA UTAMA
 id_item_valid = ['C','G']
 id_item = input("Masukan ID item: ")
@@ -79,12 +62,13 @@ if (id_item[0] not in id_item_valid):
 
 #Memilih file mana yang akan dibuka
 if id_item[0] == 'G':
-    datas = open_csv("gadget.csv")[0]
-    header = open_csv("gadget.csv")[1]
+    filedata_g = loadGadget()
+    datas = filedata_g["datas"]
+    header = filedata_g["header"]
 elif id_item[0] == 'C':
-    datas = open_csv("consumable.csv")[0]
-    header = open_csv("consumable.csv")[1]
-
+    filedata_c = loadConsumable()
+    datas = filedata_c["datas"]
+    header = filedata_c["header"]
 found = False
 i = 0
 while (i < len(datas)):

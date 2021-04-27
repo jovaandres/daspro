@@ -3,7 +3,7 @@
 #tanggal: 18 April 2021
 
 import time as datetime
-from load import load
+from load import loadGadget, loadGagdetReturnHistory
 
 def convert_datas_to_string():
   string_data = ";".join(header) + "\n"
@@ -51,11 +51,11 @@ def tampil_lagi(sorted_datas,idx):
 #ALGORITMA UTAMA
 
 #Pengaksesan file riwayat pengembalian gadget  dan konversi
-return_history = load("gadget_return_history.csv","r")
+return_history = loadGagdetReturnHistory()
 header = return_history["header"]
 datas = return_history["datas"]
 #Pengaksesan file gadget dan konversi
-gadget = load("gadget.csv","r")
+gadget = loadGadget()
 header_gadget = gadget["header"]
 datas_gadget = gadget["datas"]
 

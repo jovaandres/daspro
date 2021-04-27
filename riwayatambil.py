@@ -3,7 +3,7 @@
 #tanggal: 18 April 2021
 
 import time as datetime
-from load import load
+from load import loadConsumable, loadConsumableHistory
 
 def convert_datas_to_string():
   string_data = ";".join(header) + "\n"
@@ -53,12 +53,12 @@ def tampil_lagi(sorted_datas,idx):
 #ALGORITMA UTAMA
 
 #Pengaksesan file riwayat pengambilan consumable  dan konversi
-consume_history = load("consumable_history.csv","r")
+consume_history = loadConsumableHistory()
 header = consume_history["header"]
 datas = consume_history["datas"]
 
 #Pengaksesan file consumable dan konversi
-consumable = load("consumable.csv","r")
+consumable = loadConsumable()
 header_consumable = consumable["header"]
 datas_consumable = consumable["datas"]
 
