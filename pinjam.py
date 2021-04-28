@@ -17,7 +17,7 @@ def pinjam_gadget(id_peminjam):
     if nama != "Not Found":
         if cek_stok(_id, jumlah_peminjaman):
             ubah_stok(data_nama[1], jumlah_peminjaman)
-            borrowHistoryDatas.append([len(borrowHistoryDatas) + 1, id_peminjam, _id,tanggal_peminjaman, jumlah_peminjaman])
+            borrowHistoryDatas.append([str(len(borrowHistoryDatas) + 1), id_peminjam, _id,tanggal_peminjaman, jumlah_peminjaman])
             print("Item {} (x{}) berhasil dipinjam!".format(nama, jumlah_peminjaman))
             gadgetDatas = {"header": header, "datas": datas}
             gadgetBorrowHistoryDatas = {"header": borrowHistoryHeader, "datas": borrowHistoryDatas}

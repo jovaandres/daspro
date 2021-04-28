@@ -3,15 +3,13 @@ bold = '\033[1m'
 end = '\033[0m'
 from load import consumableDatas, consumableHistoryDatas
 
-id_pengambil = 1
-
 def check_item_id (input, range):
     if (input not in range):
         print("Tidak ada item dengan ID tersebut")
         exit()
     
 # ALGORITMA UTAMA
-def minta_consumable():
+def minta_consumable(id_pengambil):
     global consumableDatas, consumableHistoryDatas
     id_item = input("Masukan ID item: ")
     #Cek jenis id item

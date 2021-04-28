@@ -1,4 +1,4 @@
 id;username;nama;alamat;password;role
-1;Jova;jova;jova;jova;user
-2;jova;jovas;ajo;jov;user
-3;jova;si;jivas;jova;user
+1;Jova;jova;jova;jova;User
+2;jova;jovas;ajo;jov;Admin
+3;jova;si;jivas;jova;User

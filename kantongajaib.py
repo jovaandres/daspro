@@ -15,40 +15,76 @@ from riwayatkembali import riwayat_kembali
 from riwayatambil import riwayat_ambil
 import sys
 
+print("Silahkan Login Terlebih Dahulu\n")
+id_user = ''
+role_user = ''
+
+userdata = login()
+
 command = ''
 while command != "exit":
-    command = input(">>>")
+    command = input(">>> ")
     print()
     if command == "login":
-        login()
+        userdata = login()
+        id_user = userdata[0]
+        role_user = userdata[1]
     elif command == "register":
-        register()
+        if role_user == "Admin":
+            register()
+        else:
+            print("Masukan salah!")
     elif command == "carirarity":
         cari_rarity()
     elif command == "caritahun":
         cari_tahun()
     elif command == "tambahitem":
-        tambah_item()
+        if role_user == "Admin":
+            tambah_item()
+        else:
+            print("Masukan salah!")
     elif command == "hapusitem":
-        hapus_item()
+        if role_user == "Admin":
+            hapus_item()
+        else:
+            print("Masukan salah!")
     elif command == "ubahjumlah":
-        ubah_jumlah()
-    elif command == "pinjam":
-        pinjam_gadget(1)
-    elif command == "kembalikan":
-        kembalikan()
+        if role_user == "Admin":
+            ubah_jumlah()
+        else:
+            print("Masukan salah!")
     elif command == "minta":
-        minta_consumable()
-    elif command == "riwayatpinjam":
-        riwayat_pinjam()
+        if role_user == "User":
+            minta_consumable(id_user)
+        else:
+            print("Masukan salah!")
+    elif command == "pinjam":
+        if role_user == "User":
+            pinjam_gadget(id_user)
+        else:
+            print("Masukan salah!")
+    elif command == "kembalikan":
+        if role_user == "User":
+            kembalikan(id_user)
+        else:
+            print("Masukan salah!")
+    elif command == "riwayatpinjam":        
+        if role_user == "Admin":
+            riwayat_pinjam()
+        else:
+            print("Masukan salah!")
     elif command == "riwayatkembali":
-        riwayat_kembali()
+        if role_user == "Admin":
+            riwayat_kembali()
+        else:
+            print("Masukan salah!")    
     elif command == "riwayatambil":
-        riwayat_ambil()
+        if role_user == "Admin":
+            riwayat_ambil()
+        else:
+            print("Masukan salah!")    
     elif command == "exit":
         sys.exit()
-    elif command == "minta":
-        minta_consumable()
     else:
         print("Masukkan salah!")
     print()

@@ -21,7 +21,8 @@ def modify_datas(idx, col, value):
     datas[idx][col] = value
 
 # PINJAM GADGET
-def kembalikan():
+def kembalikan(id_peminjam):
+    filter_by_user(id_peminjam, datas)
     global gadgetReturnHistoryDatas
     num = 1
     for i in user_datas:
@@ -32,7 +33,7 @@ def kembalikan():
     id_gadget = user_datas[_id-1][2]
     data_nama = cek_nama(id_gadget)
     if data_nama[0] != "Not Found":
-        datas_pengembalian.append([len(datas) + 1, _id, tanggal_peminjaman])
+        datas_pengembalian.append([str(len(datas) + 1), _id, tanggal_peminjaman])
         gadgetReturnHistoryDatas = {"header": header_pengembalian, "datas": datas_pengembalian}
         print("Item {} (x{}) berhasil dikembalikan!".format(data_nama[0], datas[_id-1][4]))
                              
@@ -43,5 +44,3 @@ def cek_nama(_id):
             return (data_gadget[i][1], i)
         i += 1
     return ("Not Found")
-
-filter_by_user("1", datas)

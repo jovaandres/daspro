@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("data")
 args = parser.parse_args()
 
-print("Loading...")
+print("Loading...\n")
 
 def split_by_chr(string_data, pattern):
     arr_splitted = []
@@ -29,7 +29,7 @@ def loadData(args):
 
 if os.path.exists(args.data):
     loadData(args)
-    print('Selamat datang di "Kantong Ajaib!"')
+    print('Selamat datang di "Kantong Ajaib!"\n')
 else:
     print("Tidak ada nama folder yang diberikan !")
     sys.exit()
