@@ -34,41 +34,6 @@ else:
     print("Tidak ada nama folder yang diberikan !")
     sys.exit()
 
-def loadGadget():
-    return load(f"{database_dir}\\gadget.csv", "r")
-
-def loadConsumable():
-    return load(f"{database_dir}\\consumable.csv", "r")
-
-def loadUser():
-    return load(f"{database_dir}\\user.csv", "r")
-
-def loadGagdetBorrowHistory():
-    return load(f"{database_dir}\\gadget_borrow_history.csv", "r")
-
-def loadGagdetReturnHistory():
-    return load(f"{database_dir}\\gadget_return_history.csv", "r")
-
-def loadConsumableHistory():
-    return load(f"{database_dir}\\consumable_history.csv", "r")
-
-def load(filename, mode):
-    f = open(filename, mode)
-    raw_lines = f.readlines()
-    f.close()
-    lines = [raw_line.replace("\n", "") for raw_line in raw_lines]
-
-    raw_header = lines.pop(0)
-    header = convert_line_to_data(raw_header)
-
-    datas = []
-    for line in lines:
-        array_of_data = convert_line_to_data(line)
-        real_values = convert_array_data_to_real_values(array_of_data, filename)
-        datas.append(real_values)
-    
-    return {"header": header, "datas": datas}
-
 def convert_line_to_data(line):
     raw_array_of_data = split_by_chr(line, ";")
     array_of_data = [data.strip() for data in raw_array_of_data]
@@ -97,3 +62,32 @@ def convert_array_data_to_real_values(array_data, filename):
             if(i == 0 or i == 4):
                 arr_copy[i] = int(arr_copy[i])
     return arr_copy
+
+def load(filename, mode):
+    f = open(filename, mode)
+    raw_lines = f.readlines()
+    f.close()
+    lines = [raw_line.replace("\n", "") for raw_line in raw_lines]
+
+    raw_header = lines.pop(0)
+    header = convert_line_to_data(raw_header)
+
+    datas = []
+    for line in lines:
+        array_of_data = convert_line_to_data(line)
+        real_values = convert_array_data_to_real_values(array_of_data, filename)
+        datas.append(real_values)
+    
+    return {"header": header, "datas": datas}
+
+gadgetDatas = load(f"{database_dir}\\gadget.csv", "r")
+
+consumableDatas = load(f"{database_dir}\\consumable.csv", "r")
+
+userDatas = load(f"{database_dir}\\user.csv", "r")
+
+gadgetBorrowHistoryDatas = load(f"{database_dir}\\gadget_borrow_history.csv", "r")
+
+gadgetReturnHistoryDatas = load(f"{database_dir}\\gadget_return_history.csv", "r")
+
+consumableHistoryDatas = load(f"{database_dir}\\consumable_history.csv", "r")

@@ -1,12 +1,14 @@
-from load import loadGadget
-from tambah_history_pinjam import tambah_history_peminjaman, save
+from load import gadgetDatas, gadgetBorrowHistoryDatas
 
-filedata = loadGadget()
-header = filedata["header"]
-datas = filedata["datas"]
+header = gadgetDatas["header"]
+datas = gadgetDatas["datas"]
+
+borrowHistoryHeader = gadgetBorrowHistoryDatas["header"]
+borrowHistoryDatas = gadgetBorrowHistoryDatas["datas"]
 
 # PINJAM GADGET
 def pinjam_gadget(id_peminjam):
+    global gadgetDatas, gadgetBorrowHistoryDatas
     _id = input("Masukkan ID item: ")
     tanggal_peminjaman = input("Tanggal peminjaman: ")
     jumlah_peminjaman = int(input("Jumlah peminjaman: "))
@@ -15,9 +17,10 @@ def pinjam_gadget(id_peminjam):
     if nama != "Not Found":
         if cek_stok(_id, jumlah_peminjaman):
             ubah_stok(data_nama[1], jumlah_peminjaman)
-            tambah_history_peminjaman(id_peminjam, _id, tanggal_peminjaman, jumlah_peminjaman)
-            save()
+            borrowHistoryDatas.append([len(borrowHistoryDatas) + 1, id_peminjam, _id,tanggal_peminjaman, jumlah_peminjaman])
             print("Item {} (x{}) berhasil dipinjam!".format(nama, jumlah_peminjaman))
+            gadgetDatas = {"header": header, "datas": datas}
+            gadgetBorrowHistoryDatas = {"header": borrowHistoryHeader, "datas": borrowHistoryDatas}
         else:
             print("Jumlah item yang tersedia tidak mencukupi permintaan")
     else:

@@ -1,15 +1,13 @@
 # PROGRAM  
 # procedure mengubah data csv menjadi array
 
-from load import loadUser
-
-user_datas = loadUser()
-header = user_datas["header"]
-datas = user_datas["datas"]
+from load import userDatas
 
 # ALGORITMA 
 
 def login():
+    global userDatas
+    datas = userDatas["datas"]
     # Input data
     username = input("Maukkan Username: ")
     password = input("Masukkan Password: ")

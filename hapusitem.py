@@ -2,23 +2,11 @@
 #F06 - Menghapus Gadget atau Consumables
 #tanggal pembuatan: 15 April 2021
 #FUNGSI/PROSEDURAL
-from load import loadGadget, loadConsumable
-
-def convert_datas_to_string():
-  string_data = ";".join(header) + "\n"
-  for arr_data in datas:
-    arr_data_all_string = [str(var) for var in arr_data]
-    string_data += ";".join(arr_data_all_string)
-    string_data += "\n"
-  return string_data
-
-filedata = []
-header = []
-datas = []
+from load import gadgetDatas, consumableDatas
 
 #ALGORITMA UTAMA
 def hapus_item():
-    global filedata, header, datas
+    global gadgetDatas, consumableDatas
     id_item_valid = ['C','G']
     id_item = input("Masukan ID item: ")
     #Cek jenis id item
@@ -29,9 +17,9 @@ def hapus_item():
     filedata = []
     #Memilih file mana yang akan dibuka
     if id_item[0] == 'G':
-        filedata = loadGadget()
+        filedata = gadgetDatas
     elif id_item[0] == 'C':
-        filedata = loadConsumable()
+        filedata = consumableDatas
 
     header = filedata["header"]
     datas = filedata["datas"]
@@ -55,14 +43,11 @@ def hapus_item():
         exit()
     elif parameter == 'Y': #Jika Yes
         datas.remove(item_dipilih) #Menghapus data yang dipilih
-        datas_as_string = convert_datas_to_string()
         #Memilih file mana yang akan dibuka
         if id_item[0] == 'G':
-            f = open("gadget.csv","w")
+            gadgetDatas = {"header": header, "datas": datas}
         elif id_item[0] == 'C':
-            f = open("consumable.csv","w")
-        f.write(datas_as_string)
-        f.close()   
+            consumableDatas = {"header": header, "datas": datas}
         print("\nItem telah berhasil dihapus dari database")
     elif parameter != 'Y' or parameter != 'N': #Jika diluar Yes or No
         print("Terjadi kesalahan saat input")

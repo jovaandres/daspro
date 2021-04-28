@@ -1,27 +1,12 @@
 # PROGRAM F01 - Register
-from load import loadUser
-
-user_datas = loadUser()
-header = user_datas["header"]
-datas = user_datas["datas"]
-
-def convert_datas_to_string():
-    string_data = ";".join(header) + "\n"
-    for arr_data in datas:
-        arr_data_all_string = [str(var) for var in arr_data]
-        string_data += ";".join(arr_data_all_string)
-        string_data += "\n"
-    return string_data
-
-def save_register(username):
-    datas_as_string = convert_datas_to_string()
-    f = open("user.csv","w")
-    f.write(datas_as_string)
-    f.close()
-    print("user", username, "baru berhasil disimpan")
+from load import userDatas
 
 # Username harus unik yaitu antar username di user data tidak  boleh sama
 def register():
+    global userDatas
+    header = userDatas["header"]
+    datas = userDatas["datas"]
+
     nama = input("Masukkan nama: ")
     username = input("masukkan username: ")
     password = input("masukkan password: ")
@@ -44,5 +29,5 @@ def register():
             role = "user"
             user_baru = [len(datas) + 1,nama,username,alamat,password,role]
             datas.append(user_baru)
-            save_register(username)
+            userDatas = {"header": header, "datas": datas}
             

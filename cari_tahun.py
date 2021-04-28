@@ -1,8 +1,7 @@
-from load import loadGadget
+from load import gadgetDatas
 
-filedata = loadGadget()
-arr_gadget = filedata["datas"]
-header = filedata["header"]
+arr_gadget = gadgetDatas["datas"]
+header = gadgetDatas["header"]
 
 def cari_tahun() :
 # Mencari gadget berdasarkan tahun ditemukan

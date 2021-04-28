@@ -2,24 +2,10 @@
 #F05 - Menambah Item 
 #tanggal pembuatan: 15 April 2021
 
-from load import loadGadget, loadConsumable
-
-#FUNGSI/PROSEDURAL
-def convert_datas_to_string():
-  string_data = ";".join(header) + "\n"
-  for arr_data in datas:
-    arr_data_all_string = [str(var) for var in arr_data]
-    string_data += ";".join(arr_data_all_string)
-    string_data += "\n"
-  return string_data
-
-#Pengaksesan file csv
-filedata = []
-header = []
-datas = []
+from load import gadgetDatas, consumableDatas
 
 def tambah_item():
-    global filedata, header, datas
+    global gadgetDatas, consumableDatas
     #ALGORITMA UTAMA
     id_item_valid = ['C','G']
     id_item = input("Masukan ID: ")
@@ -29,10 +15,11 @@ def tambah_item():
         exit()
 
     #Memilih file mana yang akan dibuka
+    filedata = []
     if id_item[0] == 'G':
-        filedata = loadGadget()
+        filedata = gadgetDatas
     elif id_item[0] == 'C':
-        filedata = loadConsumable()
+        filedata = consumableDatas
     
     header = filedata["header"]
     datas = filedata["datas"]
@@ -62,13 +49,10 @@ def tambah_item():
         item_tambahan.append(tahun_ditemukan)
     datas.append(item_tambahan)
 
-    datas_as_string = convert_datas_to_string()
     #Memilih file mana yang akan dibuka
     if id_item[0] == 'G':
-        f = open("gadget.csv","w")
+        gadgetDatas = {"header": header, "datas": datas}
     elif id_item[0] == 'C':
-        f = open("consumable.csv","w")
-    f.write(datas_as_string)
-    f.close()
+        consumableDatas = {"header": header, "datas": datas}
 
     print("\nItem berhasil ditambahkan ke database")

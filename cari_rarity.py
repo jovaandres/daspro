@@ -1,8 +1,7 @@
-from load import loadGadget
+from load import gadgetDatas
 
-filedata = loadGadget()
-datas = filedata["datas"]
-header = filedata["header"]
+datas = gadgetDatas["datas"]
+header = gadgetDatas["header"]
 
 def cari_rarity() :
 # Mencari gadget berdasarkan rarity (C, B, A, S)
