@@ -26,7 +26,7 @@ def register():
             found = 0
         else:
             found = -1
-            role = "user"
+            role = "User"
             user_baru = [len(datas) + 1,nama,username,alamat,password,role]
             datas.append(user_baru)
             userDatas = {"header": header, "datas": datas}

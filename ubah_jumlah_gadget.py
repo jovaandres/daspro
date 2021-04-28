@@ -14,7 +14,7 @@ def ubah_jumlah():
     #Cek jenis id item
     if (id_item[0] not in id_item_valid):
         print("Gagal menambahkan ID karena ID tidak valid.")
-        exit()
+        return
 
     #Memilih file mana yang akan dibuka
     filedata = []
@@ -41,7 +41,7 @@ def ubah_jumlah():
         
     if found == False :
         print("Tidak ada item dengan ID tersebut")
-        exit()
+        return
         
     input_jumlah = int(input("Masukkan Jumlah : "))
     if type(input_jumlah) != int:

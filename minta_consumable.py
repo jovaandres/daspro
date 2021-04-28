@@ -6,7 +6,7 @@ from load import consumableDatas, consumableHistoryDatas
 def check_item_id (input, range):
     if (input not in range):
         print("Tidak ada item dengan ID tersebut")
-        exit()
+        return
     
 # ALGORITMA UTAMA
 def minta_consumable(id_pengambil):
@@ -35,7 +35,7 @@ def minta_consumable(id_pengambil):
         
     if found == False :
         print("Tidak ada item dengan ID tersebut")
-        exit()
+        return
 
 
     input_jumlah = int(input("Jumlah : "))

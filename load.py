@@ -46,7 +46,7 @@ def convert_array_data_to_real_values(array_data, filename):
             if (i == 4):
                 arr_copy[i] = int(arr_copy[i])
             if (i == 5):
-                arr_copy[i] = bool(int(arr_copy[i]))
+                arr_copy[i] = int(arr_copy[i])
     elif filename.endswith("gadget.csv"):
         for i in range(6):
             if (i == 3 or i == 5):

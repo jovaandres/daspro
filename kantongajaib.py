@@ -13,13 +13,15 @@ from minta_consumable import minta_consumable
 from riwayatpinjam import riwayat_pinjam
 from riwayatkembali import riwayat_kembali
 from riwayatambil import riwayat_ambil
-import sys
+from savedata import save_all
+from _help import _help
+from _exit import _exit
 
 print("Silahkan Login Terlebih Dahulu\n")
-id_user = ''
-role_user = ''
 
 userdata = login()
+id_user = userdata[0]
+role_user = userdata[1]
 
 command = ''
 while command != "exit":
@@ -82,11 +84,14 @@ while command != "exit":
         if role_user == "Admin":
             riwayat_ambil()
         else:
-            print("Masukan salah!")    
+            print("Masukan salah!")  
+    elif command == "save":
+        save_all()
+    elif command == "help":
+        _help()
     elif command == "exit":
-        sys.exit()
+        _exit()
     else:
         print("Masukkan salah!")
     print()
-
 

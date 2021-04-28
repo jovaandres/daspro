@@ -12,7 +12,7 @@ def hapus_item():
     #Cek jenis id item
     if (id_item[0] not in id_item_valid):
         print("Gagal menambahkan ID karena ID tidak valid.")
-        exit()
+        return
 
     filedata = []
     #Memilih file mana yang akan dibuka
@@ -34,13 +34,14 @@ def hapus_item():
             break
         elif id_item not in para_id:
             print("Tidak ada item dengan ID tersebut.")
-            exit()
+            return
+    
 
     print("Apakah anda yakin ingin menghapus", ('\033[1m'+ nama_item +'\033[0m'),"(Y/N)?")
     parameter = input(">>> ")
     if parameter == 'N': #Jika No
         print("Penghapusan item dibatalkan")
-        exit()
+        return
     elif parameter == 'Y': #Jika Yes
         datas.remove(item_dipilih) #Menghapus data yang dipilih
         #Memilih file mana yang akan dibuka

@@ -5,7 +5,7 @@
 import time as datetime
 from load import consumableDatas, consumableHistoryDatas
 
-def tampil_lagi(sorted_datas, sorted_list_tanggal, idx):
+def tampil_lagi(sorted_datas, idx):
     p = True #kondisi untuk loop while
     while p:
         #Menampilkan riwayat jika sisa jumlah data <= 5
@@ -13,7 +13,7 @@ def tampil_lagi(sorted_datas, sorted_list_tanggal, idx):
             for i in range (len(sorted_datas)-idx):
                 print("ID pengambilan      :",sorted_datas[idx+i][0])
                 print("Nama Pengambil      :",sorted_datas[idx+i][1])
-                print("Nama Consumable     :",sorted_list_tanggal[i][2])
+                print("Nama Consumable     :",sorted_datas[i][2])
                 print("Tanggal pengambilan :",sorted_datas[idx+i][3])
                 print("Jumlah              :",sorted_datas[idx+i][4])
                 print()
@@ -24,7 +24,7 @@ def tampil_lagi(sorted_datas, sorted_list_tanggal, idx):
             for i in range (5):
                 print("ID pengambilan      :",sorted_datas[idx+i][0])
                 print("Nama Pengambil      :",sorted_datas[idx+i][1])
-                print("Nama Consumable     :",sorted_list_tanggal[idx+i][2])
+                print("Nama Consumable     :",sorted_datas[idx+i][2])
                 print("Tanggal pengambilan :",sorted_datas[idx+i][3])
                 print("Jumlah              :",sorted_datas[idx+i][4])
                 print()
@@ -32,7 +32,7 @@ def tampil_lagi(sorted_datas, sorted_list_tanggal, idx):
             parameter = input(">>> ")
             if parameter == 'Y':
                 idx += 5
-                tampil_lagi(sorted_datas, sorted_list_tanggal, idx)
+                tampil_lagi(sorted_datas, idx)
             elif parameter == 'N':
                 print("Pengaksesan riwayat pengambilan consumable selesai")
             else: 
@@ -62,7 +62,6 @@ def riwayat_ambil():
         tmp.append(datas[i][2])
         list_tanggal.append(tmp) #list_tanggal = [[id,tanggal_pengambilan,nama,id_consumable],[..]..]
     sorted_list_tanggal = sorted(list_tanggal, key=lambda t: datetime.strptime(t[1], '%d/%m/%Y' ), reverse= True) #t[1] karena posisi tanggal di arraynya
-    print(sorted_list_tanggal)
 
     #Mengurutkan data berdasarkan tanggal secara descending
     sorted_datas = []
@@ -71,15 +70,12 @@ def riwayat_ambil():
             if int(sorted_list_tanggal[i][0]) == datas[j][0]:
                 sorted_datas.append(datas[j])
 
-    #for i in range (len(sorted_list_tanggal)):
-    #  print(sorted_list_tanggal[i][2])
-
     #Menampilkan riwayat jika jumlah data <= 5
     if len(sorted_datas)<=5:
         for i in range (len(sorted_datas)):
             print("ID pengambilan      :",sorted_datas[i][0])
             print("Nama Pengambil      :",sorted_datas[i][1])
-            print("Nama Consumable     :",sorted_list_tanggal[i][2])
+            print("Nama Consumable     :",sorted_datas[i][2])
             print("Tanggal pengambilan :",sorted_datas[i][3])
             print("Jumlah              :",sorted_datas[i][4])
             print()
@@ -89,7 +85,7 @@ def riwayat_ambil():
         for i in range (5):
             print("ID pengambilan      :",sorted_datas[i][0])
             print("Nama Pengambil      :",sorted_datas[i][1])
-            print("Nama Consumable     :",sorted_list_tanggal[i][2])
+            print("Nama Consumable     :",sorted_datas[i][2])
             print("Tanggal pengambilan :",sorted_datas[i][3])
             print("Jumlah              :",sorted_datas[i][4])
             print()
@@ -97,7 +93,7 @@ def riwayat_ambil():
         parameter = input(">>> ")
         if parameter == 'Y':
             idx = 5 #indeks inisiai untuk menampilkan data selanjutnya
-            tampil_lagi(sorted_datas, sorted_list_tanggal, idx)
+            tampil_lagi(sorted_datas, idx)
         elif parameter == 'N':
             print("Pengaksesan riwayat pengambilan consumable selesai")
         else: 

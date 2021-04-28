@@ -12,7 +12,7 @@ def tambah_item():
     #Cek jenis id item
     if (id_item[0] not in id_item_valid):
         print("Gagal menambahkan ID karena ID tidak valid.")
-        exit()
+        return
 
     #Memilih file mana yang akan dibuka
     filedata = []
@@ -28,7 +28,7 @@ def tambah_item():
     for i in range (len(datas)):
         if id_item == datas[i][0]:
             print("Gagal menambahkan item karena ID sudah ada.")
-            exit()  
+            return
 
     #Masukan pengguna selain ID
     nama_item = input("Masukan Nama: ")
@@ -39,7 +39,7 @@ def tambah_item():
     rarity_item_valid = ['C','B','A','S']
     if (rarity_item not in rarity_item_valid):
         print("Input rarity tidak valid!")
-        exit()
+        return
     if id_item[0] == 'G': #Jika tipe Gadget ada tambahan tahun ditemukan
         tahun_ditemukan = int(input("Masukan tahun ditemukan: "))
 
