@@ -10,7 +10,7 @@ data_gadget = gadgetDatas["datas"]
 
 def filter_by_user(_id, array_data):
     for data in datas:
-        if data[1] == _id:
+        if data[1] == _id and not data[5]:
             user_datas.append(data)
 
 def modify_datas(idx, col, value):
