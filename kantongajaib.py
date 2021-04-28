@@ -1,6 +1,3 @@
-import argparse
-import os
-import sys
 from load import loadData
 from pinjam import pinjam_gadget
 from kembalikan import kembalikan
