@@ -1,17 +1,7 @@
 import argparse
 import os
+import sys
 from load import loadData
-
-parser = argparse.ArgumentParser()
-parser.add_argument("data")
-args = parser.parse_args()
-
-print("Loading...")
-
-loadData(args)
-
-print("Selamat datang di \"Kantong Ajaib\"!")
-
 from pinjam import pinjam_gadget
 from kembalikan import kembalikan
 from login import login

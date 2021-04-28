@@ -1,11 +1,38 @@
 import os
+import argparse
+import sys
 database_dir = ''
+
+parser = argparse.ArgumentParser()
+parser.add_argument("data")
+args = parser.parse_args()
+
+print("Loading...")
+
+def split_by_chr(string_data, pattern):
+    arr_splitted = []
+    new_string = ""
+    for i in string_data:
+        if (i == pattern):
+            arr_splitted.append(new_string)
+            new_string = ""
+        else:
+            new_string += i
+    arr_splitted.append(new_string)
+    return arr_splitted
 
 def loadData(args):
     global database_dir
     x = os.getcwd()
     x += f'\\{args.data}'
     database_dir = split_by_chr(str(x), "\\")[-1]
+
+if os.path.exists(args.data):
+    loadData(args)
+    print('Selamat datang di "Kantong Ajaib!"')
+else:
+    print("Tidak ada nama folder yang diberikan !")
+    sys.exit()
 
 def loadGadget():
     return load(f"{database_dir}\\gadget.csv", "r")
@@ -41,18 +68,6 @@ def load(filename, mode):
         datas.append(real_values)
     
     return {"header": header, "datas": datas}
-
-def split_by_chr(string_data, pattern):
-    arr_splitted = []
-    new_string = ""
-    for i in string_data:
-        if (i == pattern):
-            arr_splitted.append(new_string)
-            new_string = ""
-        else:
-            new_string += i
-    arr_splitted.append(new_string)
-    return arr_splitted
 
 def convert_line_to_data(line):
     raw_array_of_data = split_by_chr(line, ";")
