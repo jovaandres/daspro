@@ -61,23 +61,23 @@ def convert_line_to_data(line):
 
 def convert_array_data_to_real_values(array_data, filename):
     arr_copy = array_data[:]
-    if filename == "gadget_borrow_history.csv":
+    if filename.endswith("gadget_borrow_history.csv"):
         for i in range(5):
             if (i == 4):
                 arr_copy[i] = int(arr_copy[i])
-    elif filename == "gadget.csv":
+    elif filename.endswith("gadget.csv"):
         for i in range(6):
             if (i == 3 or i == 5):
                 arr_copy[i] = int(arr_copy[i])
-    elif filename == "user.csv":
+    elif filename.endswith("user.csv"):
         for i in range(6):
             if (i == 0):
                 arr_copy[i] = int(arr_copy[i])
-    elif filename == "consumable.csv":
+    elif filename.endswith("consumable.csv"):
         for i in range (5):
             if(i == 3):
                 arr_copy[i] = int(arr_copy[i])
-    elif filename == "consumable_history.csv":
+    elif filename.endswith("consumable_history.csv"):
         for i in range(5):
             if(i == 0 or i == 4):
                 arr_copy[i] = int(arr_copy[i])
