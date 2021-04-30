@@ -27,11 +27,7 @@ command = ''
 while command != "exit":
     command = input(">>> ")
     print()
-    if command == "login":
-        userdata = login()
-        id_user = userdata[0]
-        role_user = userdata[1]
-    elif command == "register":
+    if command == "register":
         if role_user == "Admin":
             register()
         else:

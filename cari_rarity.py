@@ -11,6 +11,9 @@ def cari_rarity() :
     rarity = input("Masukkan rarity : ")
     print()
     print("Hasil pencarian: \n")
+    if rarity not in ['C', 'B', 'A', 'S']:
+        print("Rarity tidak valid! Rarity yang valid adalah C, B, A, atau S")
+        return
     for i in range (len(datas)) :
         if (datas[i][4] == rarity) :                               # mencari index dengan rarity yang sama                 
             print("Nama            :", datas[i][1])                # kolom 1 : nama

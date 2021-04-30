@@ -13,6 +13,9 @@ def cari_tahun() :
 # ALGORITMA
     tahun = int(input("Masukkan tahun: "))
     kat = input("Masukkan kategori: ")
+    if kat not in ['<', '<=', '=', '>', '>=']:
+        print("Kategori tidak valid! Kategori yang valid adalah <, <=, =, >, atau >=")
+        return
     print()
     print("Hasil pencarian: \n")
         
