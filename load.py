@@ -51,10 +51,6 @@ def convert_array_data_to_real_values(array_data, filename):
         for i in range(6):
             if (i == 3 or i == 5):
                 arr_copy[i] = int(arr_copy[i])
-    elif filename.endswith("user.csv"):
-        for i in range(6):
-            if (i == 0):
-                arr_copy[i] = int(arr_copy[i])
     elif filename.endswith("consumable.csv"):
         for i in range (5):
             if(i == 3):

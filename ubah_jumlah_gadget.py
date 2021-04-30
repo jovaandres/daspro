@@ -44,19 +44,19 @@ def ubah_jumlah():
         return
         
     input_jumlah = int(input("Masukkan Jumlah : "))
-    if type(input_jumlah) != int:
-        print("masukkan harus berupa integer")
+    if input_jumlah <= 0:
+        print("Masukan salah, harus lebih besar daripada 0")
     else :
         if (input_jumlah + jumlah_item < 0):
-            print( bold + str(abs(input_jumlah)) + " " + nama_item + end + " gagal dibuang karena stok kurang. Stok sekarang: " + str(jumlah_item) + "(< " + str(abs(input_jumlah)) + " )")
+            print( bold + str(input_jumlah) + " " + nama_item + end + " gagal dibuang karena stok kurang. Stok sekarang: " + str(jumlah_item) + "(< " + str(input_jumlah) + " )")
         elif (input_jumlah > 0 ):
             jumlah_item += input_jumlah
             datas[index_item][3] += input_jumlah
-            print( bold + str(abs(input_jumlah)) + " "+ nama_item + end + " berhasil ditambahkan. Stok sekarang: " + str(jumlah_item))
+            print( bold + str(input_jumlah) + " "+ nama_item + end + " berhasil ditambahkan. Stok sekarang: " + str(jumlah_item))
         elif (input_jumlah < 0 ):
             jumlah_item += input_jumlah
             datas[index_item][3] += input_jumlah
-            print( bold + str(abs(input_jumlah)) + " " + nama_item + end + " berhasil buang. Stok sekarang: " + str(jumlah_item))
+            print( bold + str(input_jumlah) + " " + nama_item + end + " berhasil buang. Stok sekarang: " + str(jumlah_item))
 
     if id_item[0] == 'G':
         gadgetDatas = {"header": header, "datas": datas}

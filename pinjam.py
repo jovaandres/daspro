@@ -1,4 +1,5 @@
 from load import gadgetDatas, gadgetBorrowHistoryDatas
+from datetime import datetime
 
 header = gadgetDatas["header"]
 datas = gadgetDatas["datas"]
@@ -11,7 +12,15 @@ def pinjam_gadget(id_peminjam):
     global gadgetDatas, gadgetBorrowHistoryDatas
     _id = input("Masukkan ID item: ")
     tanggal_peminjaman = input("Tanggal peminjaman: ")
+    try:
+        datetime.strptime(tanggal_peminjaman, '%d/%m/%Y')
+    except ValueError:
+        print("Tanggal salah, harus mengikuti format DD/MM/YYYY")
+        return
     jumlah_peminjaman = int(input("Jumlah peminjaman: "))
+    if jumlah_peminjaman <= 0:
+        print("Masukan salah, jumlah harus lebih besar dari 0")
+        return
     data_nama = cek_nama(_id)
     nama = data_nama[0]
     if nama != "Not Found":
@@ -29,7 +38,6 @@ def pinjam_gadget(id_peminjam):
 def ubah_stok(index, jumlah):
     datas[index][3] = datas[index][3] - jumlah
     
-
 def cek_stok(_id, jumlah):
     found = False
     i = 0

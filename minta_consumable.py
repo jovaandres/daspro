@@ -2,6 +2,7 @@
 bold = '\033[1m'
 end = '\033[0m'
 from load import consumableDatas, consumableHistoryDatas
+from datetime import datetime
 
 def check_item_id (input, range):
     if (input not in range):
@@ -37,16 +38,23 @@ def minta_consumable(id_pengambil):
         print("Tidak ada item dengan ID tersebut")
         return
 
-
     input_jumlah = int(input("Jumlah : "))
+    if input_jumlah <= 0:
+        print("Jumlah salah, harus lebih besar dari 0")
+        return
     tangga_minta = input("Tanggal permintaan :  ")
+    try:
+        datetime.strptime(tangga_minta, '%d/%m/%Y')
+    except ValueError:
+        print("Tanggal salah, harus mengikuti format DD/MM/YYYY")
+        return
 
     if ( jumlah_item - input_jumlah < 0):
-        print( bold + str(abs(input_jumlah)) + " " + nama_item + end + " gagal diambil karena stok kurang. Stok sekarang: " + str(jumlah_item) + "(< " + str(abs(input_jumlah)) + " )")
+        print( bold + str(input_jumlah) + " " + nama_item + end + " gagal diambil karena stok kurang. Stok sekarang: " + str(jumlah_item) + "(< " + str(input_jumlah) + " )")
     elif (jumlah_item - input_jumlah >= 0):
         jumlah_item -= input_jumlah
         datas[index_item][3] -= input_jumlah
-        print( bold + str(abs(input_jumlah)) + " "+ nama_item + end + " telah berhasil diambil")
+        print( bold + str(input_jumlah) + " "+ nama_item + end + " telah berhasil diambil")
     
         history = [1,id_pengambil,id_item,tangga_minta,input_jumlah ]
         datas_g.append(history)
@@ -56,4 +64,4 @@ def minta_consumable(id_pengambil):
         jumlah_item += input_jumlah
         datas[index_item][3] += input_jumlah
         consumableDatas = {"header": header, "datas": datas}
-        print( bold + str(abs(input_jumlah)) + " " + nama_item + end + " berhasil buang. Stok sekarang: " + str(jumlah_item))
+        print( bold + str(input_jumlah) + " " + nama_item + end + " berhasil buang. Stok sekarang: " + str(jumlah_item))
