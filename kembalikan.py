@@ -7,6 +7,7 @@ datas = gadgetBorrowHistoryDatas["datas"]
 header_pengembalian = gadgetReturnHistoryDatas["header"]
 datas_pengembalian = gadgetReturnHistoryDatas["datas"]
 
+header_gadget = gadgetDatas["header"]
 data_gadget = gadgetDatas["datas"]
 
 def filter_by_user(_id, array_data):
@@ -19,8 +20,7 @@ def filter_by_user(_id, array_data):
 # PINJAM GADGET
 def kembalikan(id_peminjam):
     user_datas = filter_by_user(id_peminjam, datas)
-    global gadgetReturnHistoryDatas, gadgetBorrowHistoryDatas
-    print(gadgetBorrowHistoryDatas)
+    global gadgetReturnHistoryDatas, gadgetBorrowHistoryDatas, gadgetDatas
     num = 1
     for i in user_datas:
         print("{}. {}".format(num, cek_nama(i[2])[0]))
@@ -34,11 +34,14 @@ def kembalikan(id_peminjam):
         return
     id_gadget = user_datas[_id-1][2]
     data_nama = cek_nama(id_gadget)
+    
     if data_nama[0] != "Not Found":
         datas_pengembalian.append([str(len(datas) + 1), _id, tanggal_peminjaman])
         gadgetReturnHistoryDatas = {"header": header_pengembalian, "datas": datas_pengembalian}
         mark_as_returned(user_datas[_id-1][0])
+        ubah_stok(id_gadget, user_datas[_id-1][4])
         gadgetBorrowHistoryDatas = {"header": header, "datas": datas}
+        gadgetDatas = {"header": header_gadget, "datas": data_gadget}
         print("Item {} (x{}) berhasil dikembalikan!".format(data_nama[0], datas[_id-1][4]))
                              
 def cek_nama(_id):
@@ -57,4 +60,13 @@ def mark_as_returned(_id):
             return
         i += 1
     return
+
+def ubah_stok(id_gadget, jumlah):
+    i = 0
+    while i <= len(data_gadget):
+        if data_gadget[i][0] == id_gadget:
+            data_gadget[i][3] = data_gadget[i][3] + jumlah
+            return
+        i += 1
+    return False
     
