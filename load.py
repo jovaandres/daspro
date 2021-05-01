@@ -82,12 +82,12 @@ userhome = os.getcwd()
 
 gadgetDatas = load(f"{userhome}\\{database_dir}\\gadget.csv")
 
-consumableDatas = load(f"{database_dir}\\consumable.csv")
+consumableDatas = load(f"{userhome}\\{database_dir}\\consumable.csv")
 
 userDatas = load(f"{database_dir}\\user.csv")
 
-gadgetBorrowHistoryDatas = load(f"{database_dir}\\gadget_borrow_history.csv")
+gadgetBorrowHistoryDatas = load(f"{userhome}\\{database_dir}\\gadget_borrow_history.csv")
 
-gadgetReturnHistoryDatas = load(f"{database_dir}\\gadget_return_history.csv")
+gadgetReturnHistoryDatas = load(f"{userhome}\\{database_dir}\\gadget_return_history.csv")
 
-consumableHistoryDatas = load(f"{database_dir}\\consumable_history.csv")
+consumableHistoryDatas = load(f"{userhome}\\{database_dir}\\consumable_history.csv")
