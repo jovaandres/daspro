@@ -61,8 +61,8 @@ def convert_array_data_to_real_values(array_data, filename):
                 arr_copy[i] = int(arr_copy[i])
     return arr_copy
 
-def load(filename, mode):
-    f = open(filename, mode)
+def load(filename):
+    f = open(filename, "r")
     raw_lines = f.readlines()
     f.close()
     lines = [raw_line.replace("\n", "") for raw_line in raw_lines]
@@ -78,14 +78,16 @@ def load(filename, mode):
     
     return {"header": header, "datas": datas}
 
-gadgetDatas = load(f"{database_dir}\\gadget.csv", "r")
+userhome = os.getcwd()
 
-consumableDatas = load(f"{database_dir}\\consumable.csv", "r")
+gadgetDatas = load(f"{userhome}\\{database_dir}\\gadget.csv")
 
-userDatas = load(f"{database_dir}\\user.csv", "r")
+consumableDatas = load(f"{database_dir}\\consumable.csv")
 
-gadgetBorrowHistoryDatas = load(f"{database_dir}\\gadget_borrow_history.csv", "r")
+userDatas = load(f"{database_dir}\\user.csv")
 
-gadgetReturnHistoryDatas = load(f"{database_dir}\\gadget_return_history.csv", "r")
+gadgetBorrowHistoryDatas = load(f"{database_dir}\\gadget_borrow_history.csv")
 
-consumableHistoryDatas = load(f"{database_dir}\\consumable_history.csv", "r")
+gadgetReturnHistoryDatas = load(f"{database_dir}\\gadget_return_history.csv")
+
+consumableHistoryDatas = load(f"{database_dir}\\consumable_history.csv")
