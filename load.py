@@ -84,7 +84,7 @@ gadgetDatas = load(f"{userhome}\\{database_dir}\\gadget.csv")
 
 consumableDatas = load(f"{userhome}\\{database_dir}\\consumable.csv")
 
-userDatas = load(f"{database_dir}\\user.csv")
+userDatas = load(f"{userhome}\\{database_dir}\\user.csv")
 
 gadgetBorrowHistoryDatas = load(f"{userhome}\\{database_dir}\\gadget_borrow_history.csv")
 
