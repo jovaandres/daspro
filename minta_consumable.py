@@ -60,8 +60,4 @@ def minta_consumable(id_pengambil):
         datas_g.append(history)
         consumableHistoryDatas = {"header": header_g, "datas": datas_g}
 
-    elif (input_jumlah < 0 ):
-        jumlah_item += input_jumlah
-        datas[index_item][3] += input_jumlah
-        consumableDatas = {"header": header, "datas": datas}
-        print( bold + str(input_jumlah) + " " + nama_item + end + " berhasil buang. Stok sekarang: " + str(jumlah_item))
+   
