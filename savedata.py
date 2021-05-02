@@ -14,10 +14,10 @@ def save_all():
     global gadgetDatas, gadgetBorrowHistoryDatas, gadgetReturnHistoryDatas, consumableDatas, consumableHistoryDatas, userDatas
     listData = [gadgetDatas, gadgetBorrowHistoryDatas, gadgetReturnHistoryDatas, consumableDatas, consumableHistoryDatas, userDatas]
     listFile = ["gadget.csv", "gadget_borrow_history.csv", "gadget_return_history.csv", "consumable.csv", "consumable_history.csv", "user.csv"]
+    x = os.getcwd()
+    if folder_name not in os.listdir(x):
+      os.mkdir(folder_name)
     for i in range(6):
-      x = os.getcwd()
-      if folder_name not in os.listdir(x):
-        os.mkdir(folder_name)
       f = open(f"{folder_name}\\" + listFile[i], "w")
       f.write(convert_datas_to_string(listData[i]["header"], listData[i]["datas"]))
       f.close()

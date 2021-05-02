@@ -26,6 +26,9 @@ def kembalikan(id_peminjam):
         print("{}. {}".format(num, cek_nama(i[2])[0]))
         num += 1
     _id = int(input("Masukkan nomor peminjaman: "))
+    if _id not in range(1, len(user_datas) + 1):
+        print("Input salah")
+        return
     tanggal_peminjaman = input("Tanggal pengembalian: ")
     try:
         datetime.strptime(tanggal_peminjaman, '%d/%m/%Y')
