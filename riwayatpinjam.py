@@ -3,7 +3,7 @@
 #tanggal pembuatan: 17 April 2021
 
 import time as datetime
-from load import gadgetBorrowHistoryDatas, gadgetDatas
+from load import gadgetBorrowHistoryDatas, gadgetDatas, userDatas
 
 #FUNGSI/PROSEDURAL
 
@@ -14,7 +14,7 @@ def tampil_lagi(sorted_datas,idx):
         if len(sorted_datas)-idx<=5:
             for i in range (len(sorted_datas)-idx):
                 print("ID Peminjaman      :",sorted_datas[idx+i][0])
-                print("Nama Pengambil     :",sorted_datas[idx+i][1])
+                print("Nama Pengambil     :",cek_nama_user(sorted_datas[idx+i][1]))
                 print("Nama Gadget        :",cek_nama(sorted_datas[idx+i][2]))
                 print("Tanggal peminjaman :",sorted_datas[idx+i][3])
                 print("Jumlah             :",sorted_datas[idx+i][4])
@@ -25,7 +25,7 @@ def tampil_lagi(sorted_datas,idx):
         else:  #len(sorted_datas)>5
             for i in range (5):
                 print("ID Peminjaman      :",sorted_datas[idx+i][0])
-                print("Nama Pengambil     :",sorted_datas[idx+i][1])
+                print("Nama Pengambil     :",cek_nama_user(sorted_datas[idx+i][1]))
                 print("Nama Gadget        :",cek_nama(sorted_datas[idx+i][2]))
                 print("Tanggal peminjaman :",sorted_datas[idx+i][3])
                 print("Jumlah             :",sorted_datas[idx+i][4])
@@ -68,7 +68,7 @@ def riwayat_pinjam():
     if len(sorted_datas)<=5:
         for i in range (len(sorted_datas)):
             print("ID Peminjaman      :",sorted_datas[i][0])
-            print("Nama Pengambil     :",sorted_datas[i][1])
+            print("Nama Pengambil     :",cek_nama_user(sorted_datas[i][1]))
             print("Nama Gadget        :",cek_nama(sorted_datas[i][2]))
             print("Tanggal peminjaman :",sorted_datas[i][3])
             print("Jumlah             :",sorted_datas[i][4])
@@ -78,7 +78,7 @@ def riwayat_pinjam():
     else:  #len(sorted_datas)>5
         for i in range (5):
             print("ID Peminjaman      :",sorted_datas[i][0])
-            print("Nama Pengambil     :",sorted_datas[i][1])
+            print("Nama Pengambil     :",cek_nama_user(sorted_datas[i][1]))
             print("Nama Gadget        :",cek_nama(sorted_datas[i][2]))
             print("Tanggal peminjaman :",sorted_datas[i][3])
             print("Jumlah             :",sorted_datas[i][4])
@@ -92,6 +92,15 @@ def riwayat_pinjam():
             print("Pengaksesan riwayat peminjaman gadget selesai")
         else: 
             print("Terjadi kesalahan saat input")
+
+def cek_nama_user(_id):
+    global userDatas
+    i = 0
+    while i < len(userDatas["datas"]):
+        if userDatas["datas"][i][0] == _id:
+            return userDatas["datas"][i][2]
+        i += 1
+    return ("Not Found")
 
 def cek_nama(_id):
     global gadgetDatas
