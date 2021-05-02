@@ -24,8 +24,8 @@ def split_by_chr(string_data, pattern):
 def loadData(args):
     global database_dir
     x = os.getcwd()
-    x += f'\\{args.data}'
-    database_dir = split_by_chr(str(x), "\\")[-1]
+    x += f'/{args.data}'
+    database_dir = split_by_chr(str(x), "/")[-1]
 
 if os.path.exists(args.data):
     loadData(args)
@@ -80,14 +80,14 @@ def load(filename):
 
 userhome = os.getcwd()
 
-gadgetDatas = load(f"{userhome}\\{database_dir}\\gadget.csv")
+gadgetDatas = load(f"{userhome}/{database_dir}/gadget.csv")
 
-consumableDatas = load(f"{userhome}\\{database_dir}\\consumable.csv")
+consumableDatas = load(f"{userhome}/{database_dir}/consumable.csv")
 
-userDatas = load(f"{userhome}\\{database_dir}\\user.csv")
+userDatas = load(f"{userhome}/{database_dir}/user.csv")
 
-gadgetBorrowHistoryDatas = load(f"{userhome}\\{database_dir}\\gadget_borrow_history.csv")
+gadgetBorrowHistoryDatas = load(f"{userhome}/{database_dir}/gadget_borrow_history.csv")
 
-gadgetReturnHistoryDatas = load(f"{userhome}\\{database_dir}\\gadget_return_history.csv")
+gadgetReturnHistoryDatas = load(f"{userhome}/{database_dir}/gadget_return_history.csv")
 
-consumableHistoryDatas = load(f"{userhome}\\{database_dir}\\consumable_history.csv")
+consumableHistoryDatas = load(f"{userhome}/{database_dir}/consumable_history.csv")

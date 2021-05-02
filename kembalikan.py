@@ -19,8 +19,8 @@ def filter_by_user(_id, array_data):
 
 # PINJAM GADGET
 def kembalikan(id_peminjam):
-    user_datas = filter_by_user(id_peminjam, datas)
     global gadgetReturnHistoryDatas, gadgetBorrowHistoryDatas, gadgetDatas
+    user_datas = filter_by_user(id_peminjam, datas)
     num = 1
     for i in user_datas:
         print("{}. {}".format(num, cek_nama(i[2])[0]))

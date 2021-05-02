@@ -21,3 +21,4 @@ def save_all():
       f = open(f"{folder_name}\\" + listFile[i], "w")
       f.write(convert_datas_to_string(listData[i]["header"], listData[i]["datas"]))
       f.close()
+    print("Berhasil menyimpan data ke database")

@@ -3,7 +3,7 @@
 #tanggal: 18 April 2021
 
 import time as datetime
-from load import gadgetDatas, gadgetReturnHistoryDatas
+from load import gadgetDatas, gadgetReturnHistoryDatas, userDatas
 
 def tampil_lagi(sorted_datas,idx):
     p = True #kondisi untuk loop while
@@ -12,7 +12,7 @@ def tampil_lagi(sorted_datas,idx):
         if len(sorted_datas)-idx<=5:
             for i in range (len(sorted_datas)-idx):
                 print("ID Pengembalian      :",sorted_datas[idx+i][0])
-                print("Nama Pengembali     :",sorted_datas[idx+i][1])
+                print("Nama Pengembali     :",cek_nama(sorted_datas[idx+i][1]))
                 # print("Nama Gadget        :",sorted_list_tanggal[i][2])
                 print("Tanggal pengembalian :",sorted_datas[idx+i][2])
                 print()
@@ -22,7 +22,7 @@ def tampil_lagi(sorted_datas,idx):
         else:  #len(sorted_datas)>5
             for i in range (5):
                 print("ID Pengembalian      :",sorted_datas[idx+i][0])
-                print("Nama Pengembali       :",sorted_datas[idx+i][1])
+                print("Nama Pengembali       :",cek_nama(sorted_datas[idx+i][1]))
                 # print("Nama Gadget          :",sorted_list_tanggal[idx+i][2])
                 print("Tanggal pengembalian :",sorted_datas[idx+i][2])
                 print()
@@ -73,7 +73,7 @@ def riwayat_kembali():
     if len(sorted_datas)<=5:
         for i in range (len(sorted_datas)):
             print("ID Pengembalian      :",sorted_datas[i][0])
-            print("Nama Pengembali       :",sorted_datas[i][1])
+            print("Nama Pengembali       :",cek_nama(sorted_datas[i][1]))
             # print("Nama Gadget          :",sorted_list_tanggal[i][2])
             print("Tanggal pengembalian :",sorted_datas[i][2])
             print()
@@ -82,7 +82,7 @@ def riwayat_kembali():
     else:  #len(sorted_datas)>5
         for i in range (5):
             print("ID Pengembalian      :",sorted_datas[i][0])
-            print("Nama Pengembali       :",sorted_datas[i][1])
+            print("Nama Pengembali       :",cek_nama(sorted_datas[i][1]))
             # print("Nama Gadget          :",sorted_list_tanggal[i][2])
             print("Tanggal pengembalian :",sorted_datas[i][2])
             print()
@@ -95,3 +95,12 @@ def riwayat_kembali():
             print("Pengaksesan riwayat pengembalian gadget selesai")
         else: 
             print("Terjadi kesalahan saat input")
+
+def cek_nama(_id):
+    global userDatas
+    i = 0
+    while i < len(userDatas["datas"]):
+        if userDatas["datas"][i][0] == _id:
+            return userDatas["datas"][i][2]
+        i += 1
+    return ("Not Found")

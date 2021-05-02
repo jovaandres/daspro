@@ -4,17 +4,17 @@ end = '\033[0m'
 from load import consumableDatas, consumableHistoryDatas
 from datetime import datetime
 
-def check_item_id (input, range):
-    if (input not in range):
-        print("Tidak ada item dengan ID tersebut")
-        return
+# def check_item_id (input, range):
+#     if (input not in range):
+#         print("Tidak ada item dengan ID tersebut")
+#         return
     
 # ALGORITMA UTAMA
 def minta_consumable(id_pengambil):
     global consumableDatas, consumableHistoryDatas
     id_item = input("Masukan ID item: ")
     #Cek jenis id item
-    check_item_id(id_item[0],['C'])
+    # check_item_id(id_item[0],['C'])
 
     datas = consumableDatas["datas"]
     header = consumableDatas["header"]

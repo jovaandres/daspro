@@ -13,7 +13,7 @@ def tampil_lagi(sorted_datas, idx):
             for i in range (len(sorted_datas)-idx):
                 print("ID pengambilan      :",sorted_datas[idx+i][0])
                 print("Nama Pengambil      :",sorted_datas[idx+i][1])
-                print("Nama Consumable     :",sorted_datas[i][2])
+                print("Nama Consumable     :",cek_nama(sorted_datas[i][2]))
                 print("Tanggal pengambilan :",sorted_datas[idx+i][3])
                 print("Jumlah              :",sorted_datas[idx+i][4])
                 print()
@@ -24,7 +24,7 @@ def tampil_lagi(sorted_datas, idx):
             for i in range (5):
                 print("ID pengambilan      :",sorted_datas[idx+i][0])
                 print("Nama Pengambil      :",sorted_datas[idx+i][1])
-                print("Nama Consumable     :",sorted_datas[idx+i][2])
+                print("Nama Consumable     :",cek_nama(sorted_datas[idx+i][2]))
                 print("Tanggal pengambilan :",sorted_datas[idx+i][3])
                 print("Jumlah              :",sorted_datas[idx+i][4])
                 print()
@@ -75,7 +75,7 @@ def riwayat_ambil():
         for i in range (len(sorted_datas)):
             print("ID pengambilan      :",sorted_datas[i][0])
             print("Nama Pengambil      :",sorted_datas[i][1])
-            print("Nama Consumable     :",sorted_datas[i][2])
+            print("Nama Consumable     :",cek_nama(sorted_datas[i][2]))
             print("Tanggal pengambilan :",sorted_datas[i][3])
             print("Jumlah              :",sorted_datas[i][4])
             print()
@@ -85,7 +85,7 @@ def riwayat_ambil():
         for i in range (5):
             print("ID pengambilan      :",sorted_datas[i][0])
             print("Nama Pengambil      :",sorted_datas[i][1])
-            print("Nama Consumable     :",sorted_datas[i][2])
+            print("Nama Consumable     :",cek_nama(sorted_datas[i][2]))
             print("Tanggal pengambilan :",sorted_datas[i][3])
             print("Jumlah              :",sorted_datas[i][4])
             print()
@@ -98,3 +98,12 @@ def riwayat_ambil():
             print("Pengaksesan riwayat pengambilan consumable selesai")
         else: 
             print("Terjadi kesalahan saat input")
+
+def cek_nama(_id):
+    global consumableDatas
+    i = 0
+    while i < len(consumableDatas["datas"]):
+        if consumableDatas["datas"][i][0] == _id:
+            return consumableDatas["datas"][i][1]
+        i += 1
+    return ("Not Found")
